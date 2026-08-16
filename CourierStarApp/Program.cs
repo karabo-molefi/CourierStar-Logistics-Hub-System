@@ -30,9 +30,9 @@ namespace CourierStarApp
                     "2. Manage Vehicles\n" +
                     "3. Manage Orders\n" +
                     "4. Manage Customers\n" +
-                    "6. Manage System\n" +
-                    "5. Exit\n" +
-                    "Enter (1-5): ");
+                    "5. Manage System\n" +
+                    "6. Exit\n" +
+                    "Enter (1-6): ");
                 int choice = int.Parse(Console.ReadLine());
 
                 MainMenu menu = (MainMenu)choice;
