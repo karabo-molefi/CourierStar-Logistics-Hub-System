@@ -14,6 +14,7 @@ namespace CourierStarApp
             ManageVehicles,
             ManageOrders,
             MangeCustomers,
+            ManageSystem,
             Exit
 
         }
@@ -29,6 +30,7 @@ namespace CourierStarApp
                     "2. Manage Vehicles\n" +
                     "3. Manage Orders\n" +
                     "4. Manage Customers\n" +
+                    "6. Manage System\n" +
                     "5. Exit\n" +
                     "Enter (1-5): ");
                 int choice = int.Parse(Console.ReadLine());
@@ -44,6 +46,9 @@ namespace CourierStarApp
                         v.ManageVehicles();
                         break;
                     case MainMenu.MangeCustomers:
+                        //
+                        break;
+                    case MainMenu.ManageSystem:
                         //
                         break;
                     case MainMenu.Exit:
