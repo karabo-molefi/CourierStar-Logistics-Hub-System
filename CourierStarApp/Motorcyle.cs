@@ -10,13 +10,11 @@ namespace CourierStarApp
     {
         private double MaxWeight = 10; //kilograms
         private double MaxDimensions = 0.04;// cubic meters
-
         string VehicleType = "Motorcycle";
-
 
         // Constructor
 
-        Motorcyle(int VehicleId, double CurrentLoad, double MaxCapacity, double MaxWeight, double MaxDimensions) : base(VehicleId, CurrentLoad, MaxCapacity)
+        public Motorcyle(int VehicleId, double CurrentLoad, double MaxCapacity, double MaxWeight, double MaxDimensions) : base(VehicleId, CurrentLoad, MaxCapacity)
         {
             this.MaxWeight = MaxWeight;
             this.MaxDimensions = MaxDimensions;

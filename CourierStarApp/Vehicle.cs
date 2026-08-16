@@ -12,6 +12,11 @@ namespace CourierStarApp
         protected double CurrentLoad;
         protected double MaxCapacity;
 
+        public int VehicleIdProperty
+        {
+            get { return VehicleId; }
+        }
+
         // Constructor 
         public Vehicle (int VehicleId, double CurrentLoad, double MaxCapacity)
         {
