@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IPrintable.cs" />
     <Compile Include="IWarning.cs" />
     <Compile Include="Motorcyle.cs" />
     <Compile Include="Program.cs" />

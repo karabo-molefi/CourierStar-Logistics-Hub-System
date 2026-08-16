@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CourierStarApp
 {
-    internal class Vehicle: IWarning
+    internal class Vehicle: IWarning, IPrintable
     {
         protected int VehicleId;
         protected double CurrentLoad;
@@ -53,13 +53,8 @@ namespace CourierStarApp
             }
         }
 
-        public void PrintDetails()
+        public virtual void PrintDetails()
         {
-            Console.WriteLine($"VehicleId: {VehicleId}\n" +
-                $"CurrentLoad: {CurrentLoad}\n" +
-                $"MaxCapacity: {MaxCapacity}" +
-                $"Vehicle Type: ");// add type of vehicle
-
         }
 
 
