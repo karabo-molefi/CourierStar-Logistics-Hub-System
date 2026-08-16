@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CourierStarApp
 {
-    internal class Vehicle
+    internal class Vehicle: IWarning
     {
         protected int VehicleId;
         protected double CurrentLoad;
@@ -33,9 +33,24 @@ namespace CourierStarApp
             return RemainingCapacity;
         }
 
+        // warning for almost at capacity
+
+         public double WarningThreshold
+        {
+            get { return 0.9 * MaxCapacity; }
+        }
+
+
         public void TriggerWarning()
         {
             // implement warning
+            if (WarningThreshold <= CurrentLoad)
+            {
+                Console.WriteLine($"WARNING:\n" +
+                    $"Vehicle ({VehicleId}) has reached the warning threshold of {WarningThreshold}kg.\n" +
+                    $"Current Load: {CurrentLoad}kg.\n" +
+                    $"Allowable Additional Load: {MaxCapacity - CurrentLoad}kg.");
+            }
         }
 
         public void PrintDetails()
