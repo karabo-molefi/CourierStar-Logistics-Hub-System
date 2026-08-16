@@ -51,6 +51,7 @@
     <Compile Include="Truck.cs" />
     <Compile Include="Van.cs" />
     <Compile Include="Vehicle.cs" />
+    <Compile Include="VehicleRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
