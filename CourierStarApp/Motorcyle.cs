@@ -10,10 +10,7 @@ namespace CourierStarApp
     {
         private double MaxWeight = 10; //kilograms
         private double MaxDimensions = 0.04;// cubic meters
-
         string VehicleType = "Motorcycle";
-
-
 
         // Constructor
 

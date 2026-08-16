@@ -11,7 +11,9 @@ namespace CourierStarApp
         AddVehicle = 1,
         PrintVehicleSummary,
         PrintVehicleDetails,
-        Search
+        Search,
+        ReturnToMainMenu,
+        Exit
     }
 
     internal class VehicleRepository : IPrintable, ISearch
@@ -20,13 +22,16 @@ namespace CourierStarApp
 
         public void ManageVehicles()
         {
+            Console.Clear();
             Console.WriteLine("====Vehicle Manager====");
 
             Console.WriteLine($"1. Add a New vehicle\n" +
                 $"2. Get Summary of vehicles\n" +
                 $"3. Get Vehicle Details\n" +
                 $"4. Search For Vehicle\n" +
-                $"Enter (1-4):");
+                $"5. Return to Main Menu\n" +
+                $"6. Exit\n" +
+                $"Enter (1-6):");
 
             int option = int.Parse(Console.ReadLine());
 
@@ -35,17 +40,28 @@ namespace CourierStarApp
             switch (menu)
             {
                 case VehicleMenu.AddVehicle:
+                    Console.Clear();
                     AddVehicle();
                     break;
                 case VehicleMenu.PrintVehicleSummary:
+                    Console.Clear();
                     PrintVehicleSummary();
                     break;
                 case VehicleMenu.PrintVehicleDetails:
                     PrintDetails();
                     break;
                 case VehicleMenu.Search:
+                    Console.Clear();
                     Search();
                     break;
+                case VehicleMenu.ReturnToMainMenu:
+                    Console.Clear();
+                    return;
+                case VehicleMenu.Exit:
+                    Console.WriteLine("Exiting program...");
+                    Environment.Exit(0);
+                    break;
+
             }
         }
 
