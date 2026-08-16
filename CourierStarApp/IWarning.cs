@@ -9,7 +9,7 @@ namespace CourierStarApp
     internal interface IWarning
     {
         void TriggerWarning();
-        double WarningThreshold { get; set; }
+        double WarningThreshold { get; }
 
     }
 }
