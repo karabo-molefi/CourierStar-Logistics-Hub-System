@@ -6,26 +6,48 @@ using System.Threading.Tasks;
 
 namespace CourierStarApp
 {
-    internal class Motorcyle: Vehicle
+    internal class Motorcycle: Vehicle
     {
         private double MaxWeight = 10; //kilograms
-        private double MaxDimensions = 0.04;// cubic meters
+        private double MaxVolume = 0.04;// cubic meters
 
         string VehicleType = "Motorcycle";
 
 
         // Constructor
 
-        Motorcyle(int VehicleId, double CurrentLoad, double MaxCapacity, double MaxWeight, double MaxDimensions) : base(VehicleId, CurrentLoad, MaxCapacity)
+        public Motorcycle(int VehicleId, double CurrentLoad, double CurrentVolume, double MaxWeight, double MaxVolume) : base(VehicleId, CurrentLoad,MaxWeight,MaxVolume,CurrentVolume)
         {
             this.MaxWeight = MaxWeight;
-            this.MaxDimensions = MaxDimensions;
+            this.MaxVolume = MaxVolume;
+        }
+
+     
+        //Abstract Method CanCarry- required for every vehicle type
+
+        public override bool CanCarry(Package Package)
+        {
+
+            if (CurrentLoad + Package.weight >= MaxWeight)
+            {
+                return false;
+            }
+            else if (CurrentVolume + Package.volume >= MaxVolume)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
+
         }
 
         // Methods
         public override double CalculateRemainingCapacity()
         {
-            return MaxCapacity - CurrentLoad;
+            return MaxWeight - CurrentLoad;
         }
 
         public override void PrintDetails()
@@ -33,9 +55,10 @@ namespace CourierStarApp
             Console.WriteLine($"VehicleId: {VehicleId}\n" +
                $"Vehicle Type: {VehicleType}\n" +
                $"CurrentLoad: {CurrentLoad}\n" +
-               $"MaxCapacity: {MaxCapacity}");
+               $"MaxCapacity: {MaxWeight}");
         }
 
 
     }
 }
+

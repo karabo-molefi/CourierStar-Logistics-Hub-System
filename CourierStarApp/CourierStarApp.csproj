@@ -44,6 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IPrintable.cs" />
+	  <Compile Include ="Package.cs"/>
+	  <Compile Include="Order.cs"/>
+	  <Compile Include="Customer.cs"/>
     <Compile Include="IWarning.cs" />
     <Compile Include="Motorcyle.cs" />
     <Compile Include="Program.cs" />

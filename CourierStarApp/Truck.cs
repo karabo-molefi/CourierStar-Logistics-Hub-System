@@ -9,21 +9,41 @@ namespace CourierStarApp
     internal class Truck: Vehicle
     {
         private double MaxWeight = 4500;//kilograms
-        private double MaxDimension = 30;//cubic meters
+        private double MaxVolume = 30;//cubic meters
         string VehicleType = "Truck";
 
 
         // Constructor
-        Truck(int VehicleId, double CurrentLoad, double MaxCapacity, double MaxWeight, double MaxDimension) : base(VehicleId, CurrentLoad, MaxCapacity)
+        public Truck(int VehicleId, double CurrentLoad,double CurrentVolume, double MaxWeight, double MaxVolume) : base(VehicleId, CurrentLoad,MaxWeight,MaxVolume, CurrentVolume)
         {
             this.MaxWeight = MaxWeight;
-            this.MaxDimension = MaxDimension;
+            this.MaxVolume = MaxVolume;
         }
 
+        //Abstract Method CanCarry- required for every vehicle type
+
+        public override bool CanCarry(Package Package)
+        {
+
+            if (CurrentLoad + Package.weight >= MaxWeight)
+            {
+                return false;
+            }
+            else if (CurrentVolume + Package.volume >= MaxVolume)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
+
+        }
         //Methods 
         public override double CalculateRemainingCapacity()
         {
-            return MaxCapacity - CurrentLoad;
+            return MaxWeight - CurrentLoad;
         }
 
         public override void PrintDetails()
@@ -31,7 +51,7 @@ namespace CourierStarApp
             Console.WriteLine($"VehicleId: {VehicleId}\n" +
                $"Vehicle Type: {VehicleType}\n" +
                $"CurrentLoad: {CurrentLoad}\n" +
-               $"MaxCapacity: {MaxCapacity}");
+               $"MaxCapacity: {MaxWeight}");
 
         }
     }
