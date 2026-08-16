@@ -14,7 +14,7 @@ namespace CourierStarApp
 
 
         // Constructor
-        Truck(int VehicleId, double CurrentLoad, double MaxCapacity, double MaxWeight, double MaxDimension) : base(VehicleId, CurrentLoad, MaxCapacity)
+        public Truck(int VehicleId, double CurrentLoad, double MaxCapacity, double MaxWeight, double MaxDimension) : base(VehicleId, CurrentLoad, MaxCapacity)
         {
             this.MaxWeight = MaxWeight;
             this.MaxDimension = MaxDimension;

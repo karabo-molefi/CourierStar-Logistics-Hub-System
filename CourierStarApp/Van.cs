@@ -13,7 +13,7 @@ namespace CourierStarApp
         string VehicleType = "Van";
         
         //Constructor
-        Van(int VehicleId, double CurrentLoad, double MaxCapacity, double MaxWeight, double MaxVolume, string VehicleType) : base(VehicleId, CurrentLoad, MaxCapacity)
+        public Van(int VehicleId, double CurrentLoad, double MaxCapacity, double MaxWeight, double MaxVolume, string VehicleType) : base(VehicleId, CurrentLoad, MaxCapacity)
         {
             this.MaxWeight = MaxWeight;
             this.MaxVolume = MaxVolume;

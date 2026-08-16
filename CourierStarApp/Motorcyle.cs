@@ -14,9 +14,10 @@ namespace CourierStarApp
         string VehicleType = "Motorcycle";
 
 
+
         // Constructor
 
-        Motorcyle(int VehicleId, double CurrentLoad, double MaxCapacity, double MaxWeight, double MaxDimensions) : base(VehicleId, CurrentLoad, MaxCapacity)
+        public Motorcyle(int VehicleId, double CurrentLoad, double MaxCapacity, double MaxWeight, double MaxDimensions) : base(VehicleId, CurrentLoad, MaxCapacity)
         {
             this.MaxWeight = MaxWeight;
             this.MaxDimensions = MaxDimensions;
