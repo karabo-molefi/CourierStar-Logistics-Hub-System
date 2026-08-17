@@ -51,6 +51,7 @@
     <Compile Include="Motorcyle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ISearch.cs" />
     <Compile Include="Truck.cs" />
     <Compile Include="Van.cs" />
     <Compile Include="Vehicle.cs" />

@@ -6,20 +6,18 @@ using System.Threading.Tasks;
 
 namespace CourierStarApp
 {
-    internal class Motorcycle: Vehicle
+    internal class Motorcyle: Vehicle
     {
         private double MaxWeight = 10; //kilograms
-        private double MaxVolume = 0.04;// cubic meters
-
+        private double MaxDimensions = 0.04;// cubic meters
         string VehicleType = "Motorcycle";
-
 
         // Constructor
 
-        public Motorcycle(int VehicleId, double CurrentLoad, double CurrentVolume, double MaxWeight, double MaxVolume) : base(VehicleId, CurrentLoad,MaxWeight,MaxVolume,CurrentVolume)
+        public Motorcyle(int VehicleId, double CurrentLoad, double CurrentVolume, double MaxWeight, double MaxDimensions) : base(VehicleId, CurrentLoad,MaxWeight,MaxDimensions,CurrentVolume)
         {
             this.MaxWeight = MaxWeight;
-            this.MaxVolume = MaxVolume;
+            this.MaxDimensions = MaxDimensions;
         }
 
      
@@ -32,7 +30,7 @@ namespace CourierStarApp
             {
                 return false;
             }
-            else if (CurrentVolume + Package.volume >= MaxVolume)
+            else if (CurrentVolume + Package.volume >= MaxDimensions)
             {
                 return false;
             }
@@ -61,4 +59,3 @@ namespace CourierStarApp
 
     }
 }
-

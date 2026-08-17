@@ -9,15 +9,15 @@ namespace CourierStarApp
     internal class Truck: Vehicle
     {
         private double MaxWeight = 4500;//kilograms
-        private double MaxVolume = 30;//cubic meters
+        private double MaxDimension = 30;//cubic meters
         string VehicleType = "Truck";
 
 
         // Constructor
-        public Truck(int VehicleId, double CurrentLoad,double CurrentVolume, double MaxWeight, double MaxVolume) : base(VehicleId, CurrentLoad,MaxWeight,MaxVolume, CurrentVolume)
+        public Truck(int VehicleId, double CurrentLoad,double CurrentVolume, double MaxWeight, double MaxDimension) : base(VehicleId, CurrentLoad,MaxWeight,MaxDimension, CurrentVolume)
         {
             this.MaxWeight = MaxWeight;
-            this.MaxVolume = MaxVolume;
+            this.MaxDimension = MaxDimension;
         }
 
         //Abstract Method CanCarry- required for every vehicle type
@@ -29,7 +29,7 @@ namespace CourierStarApp
             {
                 return false;
             }
-            else if (CurrentVolume + Package.volume >= MaxVolume)
+            else if (CurrentVolume + Package.volume >= MaxDimension)
             {
                 return false;
             }

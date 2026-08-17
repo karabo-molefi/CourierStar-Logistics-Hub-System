@@ -4,44 +4,64 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace CourierStarApp
 {
     internal class Program
     {
-        static void Main(string[] args)
+        enum MainMenu
         {
+            ManageStaff=1,
+            ManageVehicles,
+            ManageOrders,
+            MangeCustomers,
+            ManageSystem,
+            Exit
 
-            //TEST CODE TO CHECK IF ALL CLASSES&METHODS WORK // feel free to remove 
-            Customer cust = new Customer("John Doe", "123 Main St", "555-1234");
+        }
+        static void Main(string[] args)
+        {   // instanciate menu classes
+            VehicleRepository v = new VehicleRepository();
 
-            // Create a package (weight in kg, dimensions in cm)
-            Package pkg = new Package(1200, 50, 40, 30);
-
-            // Create an order
-            Order order = new Order(cust, pkg);
-
-            // Create available vehicles
-            List<Vehicle> vehicles = new List<Vehicle>
+            // running loop
+            while (true)
             {
-                new Truck(1, 0, 5000, 20000, 0),
-                new Van(2, 0, 2000, 8000, 0),
-                //new Car(3, 0, 1000, 4000, 0),
-                new Motorcycle(4, 0, 200, 500, 0)
-            };
+                Console.WriteLine("====Courier Star MENU====\n" +
+                    "1. Manage Staff\n" +
+                    "2. Manage Vehicles\n" +
+                    "3. Manage Orders\n" +
+                    "4. Manage Customers\n" +
+                    "5. Manage System\n" +
+                    "6. Exit\n" +
+                    "Enter (1-6): ");
+                int choice = int.Parse(Console.ReadLine());
 
-            // Try to assign a vehicle
-            order.AssignVehicle(vehicles);
+                MainMenu menu = (MainMenu)choice;
 
-            // Print results
-            Console.WriteLine($"Order for {order.customer.name} is {order.Status}.");
-            if (order.AssignedVehicle != null)
-            {
-                Console.WriteLine($"Assigned vehicle: {order.AssignedVehicle.GetType().Name}");
-                order.AssignedVehicle.PrintDetails();
+                switch (menu)
+                {
+                    case MainMenu.ManageStaff:
+                        // 
+                        break;
+                    case MainMenu.ManageVehicles:
+                        v.ManageVehicles();
+                        break;
+                    case MainMenu.MangeCustomers:
+                        //
+                        break;
+                    case MainMenu.ManageSystem:
+                        //
+                        break;
+                    case MainMenu.Exit:
+                        Console.WriteLine("Exiting program...");
+                        Environment.Exit(0);
+                        break;
+                }
             }
 
-            Console.ReadLine();
+
+
+
+
         }
     }
 }
