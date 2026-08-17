@@ -14,16 +14,38 @@ namespace CourierStarApp
 
         // Constructor
 
-        public Motorcyle(int VehicleId, double CurrentLoad, double MaxCapacity, double MaxWeight, double MaxDimensions) : base(VehicleId, CurrentLoad, MaxCapacity)
+        public Motorcyle(int VehicleId, double CurrentLoad, double CurrentVolume, double MaxWeight, double MaxDimensions) : base(VehicleId, CurrentLoad,MaxWeight,MaxDimensions,CurrentVolume)
         {
             this.MaxWeight = MaxWeight;
             this.MaxDimensions = MaxDimensions;
         }
 
+     
+        //Abstract Method CanCarry- required for every vehicle type
+
+        public override bool CanCarry(Package Package)
+        {
+
+            if (CurrentLoad + Package.weight >= MaxWeight)
+            {
+                return false;
+            }
+            else if (CurrentVolume + Package.volume >= MaxDimensions)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
+
+        }
+
         // Methods
         public override double CalculateRemainingCapacity()
         {
-            return MaxCapacity - CurrentLoad;
+            return MaxWeight - CurrentLoad;
         }
 
         public override void PrintDetails()
@@ -31,7 +53,7 @@ namespace CourierStarApp
             Console.WriteLine($"VehicleId: {VehicleId}\n" +
                $"Vehicle Type: {VehicleType}\n" +
                $"CurrentLoad: {CurrentLoad}\n" +
-               $"MaxCapacity: {MaxCapacity}");
+               $"MaxCapacity: {MaxWeight}");
         }
 
 
