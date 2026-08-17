@@ -8,26 +8,29 @@ namespace CourierStarApp
 {
     internal class Staff : IPrintable
     {
-        public string staffID, staffName, division;
+        public string fullID, staffName, division;
+        public int staffID { get; protected set; }
 
         //Constructor
-        public Staff(string sID, string sName, string div)
+        public Staff(int sID, string sName, string div)
         {
             this.staffID = sID;
             this.staffName = sName;
             this.division = div;
+
         }
 
         //Methods
         public virtual void GenerateIDModifier()
         {
+
         }
 
         public virtual void PrintDetails()
         {
             Console.WriteLine($"Staff Member Details: ");
             Console.WriteLine();
-            Console.WriteLine($"");
+            Console.WriteLine($"Staff ID: {staffID} \nName: {staffName} \nDivision: {division}");
         }
     }
 }

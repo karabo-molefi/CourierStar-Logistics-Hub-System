@@ -15,5 +15,10 @@ namespace CourierStarApp
         {
 
         }
+
+        public override void GenerateIDModifier()
+        {
+            
+        }
     }
 }
