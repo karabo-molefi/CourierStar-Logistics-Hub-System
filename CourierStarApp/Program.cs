@@ -20,6 +20,7 @@ namespace CourierStarApp
         }
         static void Main(string[] args)
         {   // instanciate menu classes
+            StaffManager s = new StaffManager();
             VehicleRepository v = new VehicleRepository();
 
             // running loop
@@ -52,7 +53,7 @@ namespace CourierStarApp
                 switch (menu)
                 {
                     case MainMenu.ManageStaff:
-                        // 
+                        s.StaffMenu();
                         break;
                     case MainMenu.ManageVehicles:
                         v.ManageVehicles();
