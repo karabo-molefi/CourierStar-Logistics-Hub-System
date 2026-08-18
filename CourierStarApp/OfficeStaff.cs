@@ -16,6 +16,8 @@ namespace CourierStarApp
         public OfficeStaff(string sName, string div, WorkstationChoices workstation) : base(sName, div)
         {
             this.workstation = workstation;
+            GenerateIDModifier();
+            fullStaffID = $"{officeIDModifier}{staffID}";
         }
 
         public virtual void PrintDetails()
@@ -73,7 +75,6 @@ namespace CourierStarApp
 
             }
 
-            fullStaffID = $"{officeIDModifier}{staffID}";
         }
 
     }
