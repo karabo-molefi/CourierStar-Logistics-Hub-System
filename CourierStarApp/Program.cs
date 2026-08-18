@@ -25,7 +25,8 @@ namespace CourierStarApp
             // running loop
             while (true)
             {
-                Console.WriteLine("====Courier Star MENU====\n" +
+                Console.WriteLine($"====Courier Star MENU====\n" +
+                    $"\n" +
                     "1. Manage Staff\n" +
                     "2. Manage Vehicles\n" +
                     "3. Manage Orders\n" +

@@ -56,9 +56,9 @@ namespace CourierStarApp
         public override void PrintDetails()
         {
             Console.WriteLine($"VehicleId: {VehicleId}\n" +
-               $"Vehicle Type: {VehicleType}\n" +
-               $"CurrentLoad: {CurrentLoad}\n" +
-               $"MaxCapacity: {MaxWeight}");
+               $"Vehicle Type: {VehicleType} " +
+               $"CurrentLoad: {CurrentLoad} " +
+               $"MaxCapacity: {MaxWeight}\n");
                
         }
 
