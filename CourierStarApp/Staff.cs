@@ -11,7 +11,6 @@ namespace CourierStarApp
         public string division { get; set; }
         public string staffName { get; private set; }
         public int staffID { get; private set; }
-
         public string fullStaffID { get; protected set; }
 
         //Constructor
