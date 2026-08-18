@@ -66,9 +66,9 @@ namespace CourierStarApp
         }
 
         // Collections for vehicle types
-        List<Motorcyle> Motorcyles = new List<Motorcyle>();
-        List<Van> Vans = new List<Van>();   
-        List<Truck> Trucks = new List<Truck>();
+        public static List<Motorcyle> Motorcyles = new List<Motorcyle>();
+        public static List<Van> Vans = new List<Van>();   
+        public static List<Truck> Trucks = new List<Truck>();
 
         // Starter data
 

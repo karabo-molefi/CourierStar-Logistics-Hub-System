@@ -50,6 +50,7 @@
     <Compile Include="IWarning.cs" />
     <Compile Include="Motorcyle.cs" />
     <Compile Include="Program.cs" />
+	  <Compile Include ="OrderManagement.cs"/>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ISearch.cs" />
     <Compile Include="Truck.cs" />

@@ -21,6 +21,8 @@ namespace CourierStarApp
         static void Main(string[] args)
         {   // instanciate menu classes
             VehicleRepository v = new VehicleRepository();
+            OrderManagement o = new OrderManagement();
+            ManageCustomer c = new ManageCustomer();
 
             // running loop
             while (true)
@@ -45,8 +47,11 @@ namespace CourierStarApp
                     case MainMenu.ManageVehicles:
                         v.ManageVehicles();
                         break;
+                    case MainMenu.ManageOrders:
+                        o.ManageOrders();
+                        break;
                     case MainMenu.MangeCustomers:
-                        //
+                        c.ManageCustomers();
                         break;
                     case MainMenu.ManageSystem:
                         //
