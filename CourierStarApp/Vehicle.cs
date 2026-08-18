@@ -22,7 +22,7 @@ namespace CourierStarApp
         }
 
         // Constructor 
-        public Vehicle (int VehicleId, double CurrentLoad, double MaxWeight,double MaxVolume,  double CurrentVolume)
+        public Vehicle (int VehicleId, double CurrentLoad, double MaxWeight, double MaxVolume, double CurrentVolume)
         {
             this.VehicleId = VehicleId;
             this.CurrentLoad = CurrentLoad;
