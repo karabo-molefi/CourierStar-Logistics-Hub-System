@@ -19,21 +19,12 @@ namespace CourierStarApp
         {
             this.licenseType = licType;
             this.licenseIsValid = true;
-
-            if (licenseIsValid == true)
-            {
-                licenseIsValid = Convert.ToBoolean("Yes");
-            }
-
-            else
-            {
-                licenseIsValid = Convert.ToBoolean("No");
-            }
         }
 
         public override void GenerateIDModifier()
         {
             driverIDModifier = "VD";
+            fullStaffID = $"{driverIDModifier}{staffID}";
         }
 
         public override void PrintDetails()
