@@ -19,12 +19,13 @@ namespace CourierStarApp
         {
             this.licenseType = licType;
             this.licenseIsValid = true;
+            GenerateIDModifier();
+            fullStaffID = $"{driverIDModifier}{staffID}";
         }
 
         public override void GenerateIDModifier()
         {
             driverIDModifier = "VD";
-            fullStaffID = $"{driverIDModifier}{staffID}";
         }
 
         public override void PrintDetails()
