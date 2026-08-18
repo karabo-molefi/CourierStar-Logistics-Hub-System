@@ -6,31 +6,46 @@ using System.Threading.Tasks;
 
 namespace CourierStarApp
 {
-    internal class Staff : IPrintable
+    public abstract class Staff : IPrintable
     {
-        public string fullID, staffName, division;
-        public int staffID { get; protected set; }
+        public string division { get; set; }
+        public string staffName { get; private set; }
+        public int staffID { get; private set; }
+
+        public string fullStaffID { get; protected set; }
 
         //Constructor
-        public Staff(int sID, string sName, string div)
+        protected Staff(string sName, string div)
         {
-            this.staffID = sID;
+            Random random = new Random();
+            this.staffID = random.Next(1000, 10000);
+
             this.staffName = sName;
             this.division = div;
 
         }
 
         //Methods
-        public virtual void GenerateIDModifier()
-        {
-
-        }
+        public abstract void GenerateIDModifier();
 
         public virtual void PrintDetails()
         {
+            Console.WriteLine("================================");
             Console.WriteLine($"Staff Member Details: ");
+            Console.WriteLine("================================");
             Console.WriteLine();
-            Console.WriteLine($"Staff ID: {staffID} \nName: {staffName} \nDivision: {division}");
+            Console.WriteLine($"Staff ID: {fullStaffID} \nName: {staffName} \nDivision: {division}");
+        }
+
+        public void UpdateName(string newName)
+        {
+            if (string.IsNullOrEmpty(newName))
+            {
+                Console.WriteLine("Insert data.");
+                return;
+            }
+
+            staffName = newName;
         }
     }
 }

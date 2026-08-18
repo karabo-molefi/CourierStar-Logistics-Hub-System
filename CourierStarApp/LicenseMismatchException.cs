@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace CourierStarApp
 {
-    internal class LicenseMismatchException
+    public class LicenseMismatchException : Exception
     {
+        public LicenseMismatchException(string message)
+
+            : base(message)
+        {
+
+        }
+
     }
 }

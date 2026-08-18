@@ -13,49 +13,69 @@ namespace CourierStarApp
         public WorkstationChoices workstation;
 
         //Constructor
-        public OfficeStaff(string sID, string sName, string div, WorkstationChoices workstation) : base(sID, sName, div)
+        public OfficeStaff(string sName, string div, WorkstationChoices workstation) : base(sName, div)
         {
             this.workstation = workstation;
         }
 
+        public virtual void PrintDetails()
+        {
+            Console.WriteLine("================================");
+            Console.WriteLine($"Office Staff Details: ");
+            Console.WriteLine("================================");
+            Console.WriteLine();
+            Console.WriteLine($"Staff ID: {fullStaffID} \nName: {staffName} \nWork Area: {workstation}");
+        }
+
+        public void UpdateWorkstation(WorkstationChoices newWorkstation)
+        {
+            workstation = newWorkstation;
+            GenerateIDModifier();
+            fullStaffID = $"{officeIDModifier}{staffID}";
+        }
+
         public override void GenerateIDModifier()
         {
+
             switch (workstation)
             {
-               case WorkstationChoices.Reception:
-                officeIDModifier = "OWR";
-                break;
+                case WorkstationChoices.Reception:
+                    officeIDModifier = "OWR";
+                    break;
 
-             case WorkstationChoices.Sales:
-            officeIDModifier = "OWS";
-            break;
+                case WorkstationChoices.Sales:
+                    officeIDModifier = "OWS";
+                    break;
 
-            case WorkstationChoices.Maintenance:
-                officeIDModifier = "OWM";
-                break;
+                case WorkstationChoices.Maintenance:
+                    officeIDModifier = "OWM";
+                    break;
 
-            case WorkstationChoices.Administration:
-                officeIDModifier = "OWA";
-                break;
+                case WorkstationChoices.Administration:
+                    officeIDModifier = "OWA";
+                    break;
 
-            case WorkstationChoices.Customer_Service:
-                officeIDModifier = "OWC";
-                break;
+                case WorkstationChoices.Customer_Service:
+                    officeIDModifier = "OWC";
+                    break;
 
-            case WorkstationChoices.Logistics:
-                officeIDModifier = "OWL";
-                break;
+                case WorkstationChoices.Logistics:
+                    officeIDModifier = "OWL";
+                    break;
 
-            case WorkstationChoices.Data:
-                officeIDModifier = "OWD";
-                break;
+                case WorkstationChoices.Data:
+                    officeIDModifier = "OWD";
+                    break;
 
-            default:
-                Console.WriteLine("Invalid entry. Please enter a valid value.");
-                break;
+                default:
+                    Console.WriteLine("Invalid entry. Please enter a valid value.");
+                    break;
 
-             }
+            }
+
+            fullStaffID = $"{officeIDModifier}{staffID}";
         }
+
     }
 
     public enum WorkstationChoices
