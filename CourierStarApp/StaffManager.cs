@@ -30,8 +30,8 @@ namespace CourierStarApp
          public void ManageStaff()
  {
      Console.Clear();
-
-     while (true)
+     bool running = true;
+     while (running)
      {
          Console.WriteLine("====Staff Manager====");
 
