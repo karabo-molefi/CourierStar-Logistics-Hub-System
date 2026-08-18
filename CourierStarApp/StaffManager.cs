@@ -8,10 +8,111 @@ using System.Threading.Tasks;
 
 namespace CourierStarApp
 {
-    internal class StaffManager
+        public enum StaffMenu
     {
-        private List<Staff> staffMembers = new List<Staff>();
+        AddStaff = 1,
+        RemoveStaff = 2,
+        DisplayStaff = 3,
+        UpdateStaff = 4,
+        ReturnToMainMenu = 5
+    }
+    
+        //Staff Menu
+            public enum StaffMenu
+        {
+            AddStaff = 1,
+            RemoveStaff = 2,
+            DisplayStaff = 3,
+            UpdateStaff = 4,
+            ReturnToMainMenu = 5,
+            Exit = 6
+        }
 
+    
+    internal class StaffManager
+    {   
+       private List<Staff> staffMembers = new List<Staff>();
+
+         public StaffManager()
+        {
+            StarterStaffData();
+        }
+
+         public void ManageStaff()
+ {
+     Console.Clear();
+
+     while (true)
+     {
+         Console.WriteLine("====Staff Manager====");
+
+         Console.WriteLine($"1. Add a new staff member");
+         Console.WriteLine($"2. Remove a staff member");
+         Console.WriteLine($"3. Display staff members");
+         Console.WriteLine($"4. Update staff member details");
+         Console.WriteLine($"5. Return to the main menu");
+         Console.WriteLine();
+         Console.WriteLine($"Enter the corresponding menu value (1-5): ");
+
+         int choice = 0;
+
+         try
+         {
+             choice = int.Parse(Console.ReadLine());
+         }
+
+         catch (FormatException)
+         {
+             Console.Clear();
+             Console.WriteLine("Invalid entry! Please enter a valid number (1-5).");
+             continue;
+         }
+
+         StaffMenu menu = (StaffMenu)choice;
+
+         switch (menu)
+         {
+             case StaffMenu.AddStaff:
+                 Console.Clear();
+                 AddStaff();
+                 break;
+
+             case StaffMenu.RemoveStaff:
+                 Console.Clear();
+                 RemoveStaff();
+                 break;
+
+             case StaffMenu.DisplayStaff:
+                 Console.Clear();
+                 DisplayStaff();
+                 break;
+
+             case StaffMenu.UpdateStaff:
+                 Console.Clear();
+                 UpdateStaff();
+                 break;
+
+             case StaffMenu.ReturnToMainMenu:
+                 Console.Clear();
+                 return;
+
+             default:
+                 Console.Clear();
+                 Console.WriteLine("Invalid entry! Please input a valid menu option (1-5).");
+                 break;
+         }
+     }
+ }
+
+    private void StarterStaffData()
+    {
+        staffMembers.Add(new Driver("Jacob Strauss", "Driver", LicenseType.Motorcycle));
+        staffMembers.Add(new Driver("Jason Bourne", "Driver", LicenseType.Light_Vehicle));
+        staffMembers.Add(new Driver("Seamus Pollock", "Driver", LicenseType.Heavy_Vehicle));
+        staffMembers.Add(new OfficeStaff("Sarah Williams", "Office", WorkstationChoices.Reception));
+        staffMembers.Add(new OfficeStaff("Emilia Smith", "Office", WorkstationChoices.Logistics));
+        staffMembers.Add(new OfficeStaff("Shane McMahon", "Office", WorkstationChoices.Administration));
+    }
 
         //Create / Add Staff
         public void AddStaff()
@@ -145,6 +246,7 @@ namespace CourierStarApp
             if (removeMember == null)
             {
                 Console.WriteLine("No staff member with that ID was found.");
+                return;
             }
 
             Console.WriteLine();
