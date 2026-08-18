@@ -9,15 +9,16 @@ namespace CourierStarApp
     internal class Motorcyle: Vehicle
     {
         private double MaxWeight = 10; //kilograms
-        private double MaxDimensions = 0.04;// cubic meters
+        private double MaxVolume = 0.04;// cubic meters
         string VehicleType = "Motorcycle";
 
         // Constructor
 
-        public Motorcyle(int VehicleId, double CurrentLoad, double CurrentVolume, double MaxWeight, double MaxDimensions) : base(VehicleId, CurrentLoad,MaxWeight,MaxDimensions,CurrentVolume)
+        public Motorcyle(int VehicleId, double CurrentLoad, double CurrentVolume, double MaxWeight, double MaxVolume, string VehicleType) : base( VehicleId,CurrentLoad,MaxWeight, MaxVolume,CurrentVolume)
         {
             this.MaxWeight = MaxWeight;
-            this.MaxDimensions = MaxDimensions;
+            this.MaxVolume = MaxVolume;
+            this.VehicleType = VehicleType;
         }
 
      
@@ -30,7 +31,7 @@ namespace CourierStarApp
             {
                 return false;
             }
-            else if (CurrentVolume + Package.volume >= MaxDimensions)
+            else if (CurrentVolume + Package.volume >= MaxVolume)
             {
                 return false;
             }
@@ -51,9 +52,7 @@ namespace CourierStarApp
         public override void PrintDetails()
         {
             Console.WriteLine($"VehicleId: {VehicleId}\n" +
-               $"Vehicle Type: {VehicleType}\n" +
-               $"CurrentLoad: {CurrentLoad}\n" +
-               $"MaxCapacity: {MaxWeight}");
+               $"Vehicle Type: {VehicleType} CurrentLoad: {CurrentLoad} MaxCapacity: {MaxWeight}\n");
         }
 
 

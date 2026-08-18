@@ -16,53 +16,91 @@ namespace CourierStarApp
         Exit
     }
 
-    internal class VehicleRepository : IPrintable, ISearch
+    enum VehicleDetailsMenu
     {
-        // menu for managing vehicles
+        Motorcyles =1,
+        Vans,
+        Trucks,
+        AllVehicles,
+        ReturnToVehiclesMenu
+
+    }
+
+    enum AddVehicleMenu
+    {
+        Motorcyles = 1,
+        Vans,
+        Trucks,
+        ReturnToVehiclesMenu
+    }
+
+    internal class VehicleRepository : IPrintable, ISearch
+    {        // menu for managing vehicles
 
         public void ManageVehicles()
         {
             Console.Clear();
-            Console.WriteLine("====Vehicle Manager====");
 
-            Console.WriteLine($"1. Add a New vehicle\n" +
-                $"2. Get Summary of vehicles\n" +
-                $"3. Get Vehicle Details\n" +
-                $"4. Search For Vehicle\n" +
-                $"5. Return to Main Menu\n" +
-                $"6. Exit\n" +
-                $"Enter (1-6):");
-
-            int option = int.Parse(Console.ReadLine());
-
-            VehicleMenu menu = (VehicleMenu)option;
-
-            switch (menu)
+            while (true)
             {
-                case VehicleMenu.AddVehicle:
-                    Console.Clear();
-                    AddVehicle();
-                    break;
-                case VehicleMenu.PrintVehicleSummary:
-                    Console.Clear();
-                    PrintVehicleSummary();
-                    break;
-                case VehicleMenu.PrintVehicleDetails:
-                    PrintDetails();
-                    break;
-                case VehicleMenu.Search:
-                    Console.Clear();
-                    Search();
-                    break;
-                case VehicleMenu.ReturnToMainMenu:
-                    Console.Clear();
-                    return;
-                case VehicleMenu.Exit:
-                    Console.WriteLine("Exiting program...");
-                    Environment.Exit(0);
-                    break;
+                Console.WriteLine("====Vehicle Manager====\n");
 
+                Console.WriteLine($"1. Add a New vehicle\n" +
+                    $"2. Get Summary of vehicles\n" +
+                    $"3. Get Vehicle Details\n" +
+                    $"4. Search For Vehicle\n" +
+                    $"5. Return to Main Menu\n" +
+                    $"6. Exit\n" +
+                    $"Enter (1-6):");
+
+                // erorr handling
+                int option = 0;
+                try
+                {
+                    option = int.Parse(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Invalid Input. Please enter a number (1-6) only.\n");
+                }
+
+
+                VehicleMenu menu = (VehicleMenu)option;
+
+                switch (menu)
+                {
+                    case VehicleMenu.AddVehicle:
+                        Console.Clear();
+                        AddVehicle();
+                        break;
+                    case VehicleMenu.PrintVehicleSummary:
+                        Console.Clear();
+                        PrintVehicleSummary();
+                        break;
+                    case VehicleMenu.PrintVehicleDetails:
+                        Console.Clear();
+                        PrintDetails();
+                        break;
+                    case VehicleMenu.Search:
+                        Console.Clear();
+                        Search();
+                        break;
+                    case VehicleMenu.ReturnToMainMenu:
+                        Console.Clear();
+                        return;
+                    case VehicleMenu.Exit:
+                        Console.WriteLine("Exiting program...");
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine("Invalid Input. Please enter a number (1-6) only.\n");
+                        break;
+
+                }
             }
+            
         }
 
         // Collections for vehicle types
@@ -71,7 +109,23 @@ namespace CourierStarApp
         List<Truck> Trucks = new List<Truck>();
 
         // Starter data
+        private void InitializeStarterVehicleData()
+        {
+            // Motorcycles
+            Motorcyles.Add(new Motorcyle(1000, 0, 0, 10, 0.04, "Motorcycle"));
+            Motorcyles.Add(new Motorcyle(1001, 0, 0, 10, 0.04, "Motorcycle"));
+            Motorcyles.Add(new Motorcyle(1002, 0, 0, 10, 0.04, "Motorcycle"));
 
+            // Vans
+            Vans.Add(new Van(2000, 0, 0, 1000, 4.935, "Van"));
+            Vans.Add(new Van(2001, 0, 0, 1000, 4.935, "Van"));
+            Vans.Add(new Van(2002, 0, 0, 1000, 4.935, "Van"));
+
+            // Trucks
+            Trucks.Add(new Truck(3000, 0, 0, 4500, 30, "Truck"));
+            Trucks.Add(new Truck(3001, 0, 0, 4500, 30, "Truck"));
+            Trucks.Add(new Truck(3002, 0, 0, 4500, 30, "Truck"));
+        }
 
         // Add a vehicle
 
@@ -81,49 +135,129 @@ namespace CourierStarApp
 
         public VehicleRepository()
         {
+            InitializeStarterVehicleData();
             CountMotorcycles = Motorcyles.Count;
             CountVans = Vans.Count;
             CountTrucks = Trucks.Count;
-            
+
         }
 
         void AddVehicle()
         {
-            Console.WriteLine($"Select Vehicle Type:\n" +
-                $"1. Motorcycle\n" +
-                $"2. Van\n" +
-                $"3. Truck\n" +
-                $"Enter (1-3):");
-
-            int VehicleTypeSelection = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Enter VehicleId:");
-            int VehicleId = int.Parse(Console.ReadLine());
-
-
-            // logic to add to different vehicle collections
-
-            /*int VehicleId, double CurrentLoad, double MaxCapacity, double MaxWeight, double MaxDimensions*/
-
-            switch (VehicleTypeSelection)
+            // get vehichle id
+            int GetVehicleID()
             {
-                case 1:
-                    Motorcyle motorcyle = new Motorcyle(VehicleId, 0, 10, 10, 0.04);
-                    Motorcyles.Add(motorcyle);
-                    break;
-                case 2:
-                    Van van = new Van(VehicleId, 0, 1000, 1000, 4.935, "Van");
-                    Vans.Add(van);
-                    break;
-                case 3:
-                    Truck truck = new Truck(VehicleId, 0, 4500, 4500, 50);
-                    Trucks.Add(truck);
-                    break;
+                int vehicleId = 0;
+                bool valid = false;
+                while (!valid)
+                {
+                    Console.WriteLine("Enter Vehicle ID: ");
+                    try
+                    {
+                        vehicleId = int.Parse(Console.ReadLine());
+                        valid = true;
+                    }
+                    catch (FormatException)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Invalid input. Vehicle ID should be a number.\n");
+                        continue;
+                    }
+                }
+                return vehicleId;
+               
             }
 
-            // give feedback for sucessful addition
+            while (true)
+            {
+                Console.WriteLine("====Add New Vehicle====\n");
+                Console.WriteLine($"Select Vehicle Type:" +
+                $"\n1. Motorcycle\n" +
+                $"2. Van\n" +
+                $"3. Truck\n" +
+                $"4. Return To Vehicles Menu\n" +
+                $"Enter (1-4):");
 
-            Console.WriteLine("Vehicle Added Successfully.");
+                int VehicleTypeSelection =0;
+                try
+                {
+                    VehicleTypeSelection = int.Parse(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Invalid input. Please enter a number (1-4).\n");
+                    continue;
+                }
+
+                //get vehicle id
+
+                // logic to add to different vehicle collections
+                AddVehicleMenu menu = (AddVehicleMenu)VehicleTypeSelection;
+
+                switch (menu)
+                {
+                    case AddVehicleMenu.Motorcyles:
+                        int mVID = GetVehicleID();
+
+                        Motorcyle motorcyle = new Motorcyle(mVID, 0, 10, 10, 0.04, "Motorcycle");
+                        Motorcyles.Add(motorcyle);
+                        motorcyle.PrintDetails();
+                        Console.WriteLine("Added Succefully!");
+                        break;
+                    case AddVehicleMenu.Vans:
+                        int vVID = GetVehicleID();
+
+                        Van van = new Van(vVID, 0, 1000, 1000, 4.935, "Van");
+                        Vans.Add(van);
+                        van.PrintDetails();
+                        Console.WriteLine("Added Succefully!");
+                        break;
+                    case AddVehicleMenu.Trucks:
+                        int tVID = GetVehicleID();
+
+                        Truck truck = new Truck(tVID, 0, 4500, 4500, 50, "Truck");
+                        Trucks.Add(truck);
+                        truck.PrintDetails();
+                        Console.WriteLine("Added Succefully!");
+                        break;
+                    case AddVehicleMenu.ReturnToVehiclesMenu:
+                        Console.Clear();
+                        return;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine("Invalid input. Please enter a number (1-4).\n");
+                        continue;
+                }
+
+                // ask if they want to enter a new vehicle
+                Console.WriteLine("\nWould you like to add another vehicle? (y/n)");
+                string continueChoice = Console.ReadLine();
+
+                switch (continueChoice)
+                {
+                    case "y":
+                        Console.Clear();
+                        continue;
+                    case "yes":
+                        Console.Clear();
+                        continue;
+                    case "no":
+                        Console.Clear();
+                        return;
+                    case "n":
+                        Console.Clear();
+                        return;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine("Invalid Input. Please Try Again.\n");
+                        break;
+                }
+
+            }
+           
+
+            
         }
 
         // Print summary of all vehiicles
@@ -131,13 +265,12 @@ namespace CourierStarApp
         public void PrintVehicleSummary()
         {
             // total no of each vehicle
-            Console.WriteLine("====Vehicle Repository Summary====");
-            Console.WriteLine($"{CountMotorcycles} Motorcyles");
-            Console.WriteLine($"{CountVans} Vans");
-            Console.WriteLine($"{CountTrucks} Trucks");
-            Console.WriteLine("--------");
-            Console.WriteLine($"{CountMotorcycles + CountTrucks + CountVans} Total Vehicles");// total no of vehicles
-            Console.WriteLine("--------");
+            Console.WriteLine("====Vehicle Fleet Summary====\n");
+            Console.WriteLine($"Motorcyles: {CountMotorcycles}");
+            Console.WriteLine($"Vans: {CountVans}");
+            Console.WriteLine($"Trucks: {CountTrucks}");
+            Console.WriteLine("------------------------------------");
+            Console.WriteLine($"Total: {CountMotorcycles + CountTrucks + CountVans}");// total no of vehicles
             // total no at bay
             // total no of vehicles at hub
             // no of each vehicle at hub
@@ -154,12 +287,12 @@ namespace CourierStarApp
             {
                 item.PrintDetails();
             }
-            Console.WriteLine("====Vans====");
+            Console.WriteLine("\n====Vans====");
             foreach (var item in Vans)
             {
                 item.PrintDetails();
             }
-            Console.WriteLine("====Trucks====");
+            Console.WriteLine("\n====Trucks====");
             foreach (var item in Trucks)
             {
                 item.PrintDetails();
@@ -171,19 +304,74 @@ namespace CourierStarApp
         public void Search()
         {
             Console.Clear();
-            Console.WriteLine("Enter Vehicle ID: ");
-            int searchId = int.Parse(Console.ReadLine());
-            Vehicle foundVehicle = (Motorcyles.FirstOrDefault(fm => fm.VehicleIdProperty == searchId) as Vehicle)
-                ?? (Vans.FirstOrDefault(fv => fv.VehicleIdProperty == searchId) as Vehicle)
-                ?? (Trucks.FirstOrDefault(ft => ft.VehicleIdProperty == searchId) as Vehicle);
+            while (true)
+            {
+                Console.WriteLine("====Search For Vehicle====\n");
+                Console.WriteLine("Enter Vehicle ID: ");
+                int searchId = int.Parse(Console.ReadLine());
+                Vehicle foundVehicle = (Motorcyles.FirstOrDefault(fm => fm.VehicleIdProperty == searchId) as Vehicle)
+                    ?? (Vans.FirstOrDefault(fv => fv.VehicleIdProperty == searchId) as Vehicle)
+                    ?? (Trucks.FirstOrDefault(ft => ft.VehicleIdProperty == searchId) as Vehicle);
 
-            if (foundVehicle != null)
-            {
-                foundVehicle.PrintDetails();
-            }
-            else
-            {
-                Console.WriteLine("Vehicle not found.");
+                if (foundVehicle != null)
+                {
+                    Console.WriteLine("\nVehicle found:\n");
+
+                    foundVehicle.PrintDetails();
+
+                    Console.WriteLine("Would you like to search again? (y/n)");
+
+                    string choice = Console.ReadLine();
+
+                    switch (choice)
+                    {
+                        case "y":
+                            Console.Clear();
+                            continue;
+                        case "yes":
+                            Console.Clear();
+                            continue;
+                        case "no":
+                            Console.Clear();
+                            return;
+                        case "n":
+                            Console.Clear();
+                            return;
+                        default:
+                            Console.Clear();
+                            Console.WriteLine("Invalid Input. Please Try Again.\n");
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"\nError, vehicle not found. Invalid Vehicle ID ({searchId}).\n");
+                    Console.WriteLine("Would you like to try again? (y/n)");
+
+                    string choice = Console.ReadLine();
+
+                    switch (choice)
+                    {
+                        case "y":
+                            Console.Clear();
+                            continue;
+                        case "yes":
+                            Console.Clear();
+                            continue; 
+                        case "no":
+                            Console.Clear();
+                            return;
+                        case "n":
+                            Console.Clear();
+                            return;
+                        default:
+                            Console.Clear();
+                            Console.WriteLine("Invalid Input. Please Try Again.\n");
+                            break;
+                    }
+                }
+                
+            
             }
         }
 
@@ -192,43 +380,71 @@ namespace CourierStarApp
         public void PrintDetails()
 
         {
-            Console.WriteLine($"Select Vehicle Type (or enter 4 for  All Vehicles):\n" +
-                $"1. Motorcycle" +
-                $"2. Van" +
-                $"3. Truck" +
-                $"4. All Vehicles" +
-                $"Enter (1-4):");
-
-            int VehicleTypeSelection = int.Parse(Console.ReadLine());
-
-            switch (VehicleTypeSelection) 
+            while (true)
             {
-                case 1:
-                    Console.WriteLine("====Motorcyles====");
-                    foreach (var item in Motorcyles)
-                    {
-                        item.PrintDetails();
-                    }
-                    break;
-                case 2:
-                    Console.WriteLine("====Vans====");
-                    foreach (var item in Vans)
-                    {
-                        item.PrintDetails();
-                    }
-                    break;
-                case 3:
-                    Console.WriteLine("====Trucks====");
-                    foreach (var item in Trucks)
-                    {
-                        item.PrintDetails();
-                    }
-                    break;
-                case 4:
-                    PrintAllVehicles();
-                    break;
-            }
+                Console.WriteLine("====Get Vehicle Details====\n");
+                Console.WriteLine($"Select Vehicle Type (or enter 4 for  All Vehicles):\n" +
+                $"1. Motorcycle\n" +
+                $"2. Van\n" +
+                $"3. Truck\n" +
+                $"4. All Vehicles\n" +
+                $"5. Return To Manage Vehicles\n" +
+                $"Enter (1-5):");
 
+                int VehicleTypeSelection = 0;
+
+                try
+                {
+                    VehicleTypeSelection = int.Parse(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Invalid Input. Please enter a number (1-5) only.\n");
+                }
+
+                VehicleDetailsMenu menu = (VehicleDetailsMenu)VehicleTypeSelection;
+
+                switch (menu)
+                {
+                    case VehicleDetailsMenu.Motorcyles:
+                        Console.Clear();
+                        Console.WriteLine("====Motorcyles====\n");
+                        foreach (var item in Motorcyles)
+                        {
+                            item.PrintDetails();
+                        }
+                        break;
+                    case VehicleDetailsMenu.Vans:
+                        Console.Clear();
+                        Console.WriteLine("====Vans====\n");
+                        foreach (var item in Vans)
+                        {
+                            item.PrintDetails();
+                        }
+                        break;
+                    case VehicleDetailsMenu.Trucks:
+                        Console.Clear();
+                        Console.WriteLine("====Trucks====\n");
+                        foreach (var item in Trucks)
+                        {
+                            item.PrintDetails();
+                        }
+                        break;
+                    case VehicleDetailsMenu.AllVehicles:
+                        Console.Clear();
+                        PrintAllVehicles();
+                        break;
+                    case VehicleDetailsMenu.ReturnToVehiclesMenu:
+                        Console.Clear();
+                        return;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine("Invalid Input. Please enter a number (1-5) only\n");
+                        break;
+                }
+
+            }
 
         }
 
