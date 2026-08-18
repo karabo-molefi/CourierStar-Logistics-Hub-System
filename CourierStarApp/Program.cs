@@ -58,6 +58,8 @@ namespace CourierStarApp
                     case MainMenu.ManageVehicles:
                         v.ManageVehicles();
                         break;
+                    case MainMenu.ManageOrders:
+                        break;
                     case MainMenu.MangeCustomers:
                         //
                         break;
