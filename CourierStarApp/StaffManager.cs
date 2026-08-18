@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace CourierStarApp
 {
+        //Staff Menu
         public enum StaffMenu
     {
         AddStaff = 1,
@@ -16,18 +17,6 @@ namespace CourierStarApp
         UpdateStaff = 4,
         ReturnToMainMenu = 5
     }
-    
-        //Staff Menu
-            public enum StaffMenu
-        {
-            AddStaff = 1,
-            RemoveStaff = 2,
-            DisplayStaff = 3,
-            UpdateStaff = 4,
-            ReturnToMainMenu = 5,
-            Exit = 6
-        }
-
     
     internal class StaffManager
     {   
