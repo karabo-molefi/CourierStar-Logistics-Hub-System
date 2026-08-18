@@ -53,7 +53,7 @@ namespace CourierStarApp
                 switch (menu)
                 {
                     case MainMenu.ManageStaff:
-                        s.StaffMenu();
+                        s.ManageStaff();
                         break;
                     case MainMenu.ManageVehicles:
                         v.ManageVehicles();
