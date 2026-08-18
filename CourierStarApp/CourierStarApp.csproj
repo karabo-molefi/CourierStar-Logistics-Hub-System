@@ -45,6 +45,9 @@
   <ItemGroup>
     <Compile Include="Driver.cs" />
     <Compile Include="IPrintable.cs" />
+	  <Compile Include ="Package.cs"/>
+	  <Compile Include="Order.cs"/>
+	  <Compile Include="Customer.cs"/>
     <Compile Include="IWarning.cs" />
     <Compile Include="LicenseMismatchException.cs" />
     <Compile Include="Motorcyle.cs" />
@@ -53,6 +56,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Staff.cs" />
     <Compile Include="StaffManager.cs" />
+    <Compile Include="ISearch.cs" />
     <Compile Include="Truck.cs" />
     <Compile Include="Van.cs" />
     <Compile Include="Vehicle.cs" />
